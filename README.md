@@ -1,6 +1,6 @@
 # 3 Steps Are All You Need to Achieve SOTA in MICCAI 2020 Thyroid Nodule Segmentation Challenge
 
-Segmentation is the most popular tasks in MICCAI 2020 challenges, including 15 out of 24 challenges. In this tutorial, we focus on the segmentation task in  [thyroid nodule segmentation and classification challenge (TN-SCUI 2020)](https://tn-scui2020.grand-challenge.org/). In particular, we show how to use U-Net with 3 steps to achieve IoU 0.8199 on the official leaderboard, which is very close to the Top 1 score (0.8333, 500+ participants with 800+ submissions).
+Segmentation is the most popular tasks in MICCAI 2020 challenges, including 15 out of 24 challenges. In this tutorial, we focus on the segmentation task in  [thyroid nodule segmentation and classification challenge (TN-SCUI 2020)](https://tn-scui2020.grand-challenge.org/). In particular, we show how to use U-Net with 3 steps to achieve IoU 0.8093 on the official leaderboard, which is very close to the Top 1 score (0.8173, 500+ participants).
 
 ## Task and Dataset
 
@@ -176,12 +176,5 @@ for i in range(1, 911):
 
 Zip the folder `UNet_submission` and submit it to the [official portal](https://tn-scui2020.grand-challenge.org/evaluation/submissions/create/).
 
-The results obtain IoU 0.819, which is very close to the Top 1 IoU 0.8333.
+The results obtain IoU 0.8093, which is very close to the Top 1 IoU 0.8173.
 
-**Remark:**
-
-> All the code are available in [Github](https://github.com/JunMa11/TNSCUI2020) and can be used out-of-the-box by simply setting the data path.
->
-> It should be noted that when I write this tutorial,  the challenge is still ongoing.   Thus, it is not appreciate to make this tutorial and the corresponding [Github repository](https://github.com/JunMa11/TNSCUI2020) publicly available now. 
->
-> I will make this tutorial publicly available when the challenge submission is closed (31/07/2020)!
