@@ -11,9 +11,9 @@ The target is to segment thyroid nodules from ultrasound (US) images.
 
 Let's show two examples in the training set.
 
-![benign-12_demo](I:\Data\MICCAI2020_Data\TNSCUI\nnUNet_raw_data\TNSCUI2020_train\benign-12_demo.png)
+![benign-12_demo](https://github.com/JunMa11/TNSCUI2020/blob/master/Img/benign-12_demo.png)
 
-![malignant-2369_demo](I:\Data\MICCAI2020_Data\TNSCUI\nnUNet_raw_data\TNSCUI2020_train\malignant-2369_demo.png)
+![malignant-2369_demo](https://github.com/JunMa11/TNSCUI2020/blob/master/Img/malignant-2369_demo.png)
 
 ## Step 1. Preparing environment and training data
 
