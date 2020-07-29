@@ -137,12 +137,12 @@ The five trained models will be automatically saved in `MICCAI2020/Models/nnUNet
 
 Trained models will be publicly available in [Github](https://github.com/JunMa11/TNSCUI2020) when the challenge submission is closed (31/7/2020).
 
-## Step 3. Inferring testing set and making a submission
+## Step 3. Inferring testing set and Submission
 
 Run
 
 ```python
-nnUNet_predict -i path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/imagesTs -o path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/Infer_imagesTs/ -t Task600_Thyroid2D -m 2d
+nnUNet_predict -i path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/imagesTs -o path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/UNet_Submission_NII/ -t Task600_Thyroid2D -m 2d
 ```
 
 The inference results are in
@@ -152,7 +152,7 @@ The inference results are in
     ├── nnUNetData
     │   └── nnUNet_raw_data
     │       └── Task600_Thyroid2D
-    │           └── Infer_imagesTs
+    │           └── UNet_Submission_NII
     │               ├── test_1.nii.gz
     │               ├── test_2.nii.gz
     │               ├── test_....nii.gz
@@ -163,8 +163,8 @@ Then, we convert the `nifti` files to `PNG` format.
 ```python
 import nibabel as nib
 from skimage import io
-seg_path = 'path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/Infer_imagesTs/'
-save_path = 'path to MICCAI2020/OriData/TNSCUI2020/UNet_submission/'
+seg_path = 'path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/UNet_Submission_NII/'
+save_path = 'path to MICCAI2020/OriData/TNSCUI2020/UNet_Submission_PNG/'
 
 for i in range(1, 911):
     seg = nib.load(join(seg_path, 'test_'+str(i)+'.nii')).get_fdata()
