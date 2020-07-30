@@ -1,6 +1,6 @@
 # 3 Steps Are All You Need to Achieve SOTA in MICCAI 2020 Thyroid Nodule Segmentation Challenge
 
-Segmentation is the most popular tasks in MICCAI 2020 challenges, including 15 out of 24 challenges. In this tutorial, we focus on the segmentation task in  [thyroid nodule segmentation and classification challenge (TN-SCUI 2020)](https://tn-scui2020.grand-challenge.org/). In particular, we show how to use U-Net with 3 steps to achieve IoU 0.8093 on the official leaderboard, which is very close to the Top 1 score (0.8254, 550+ participants) on the [leaderboard](https://tn-scui2020.grand-challenge.org/evaluation/leaderboard/).
+Segmentation is the most popular tasks in MICCAI 2020 challenges, including 15 out of 24 challenges. In this tutorial, we focus on the segmentation task in  [thyroid nodule segmentation and classification challenge (TN-SCUI 2020)](https://tn-scui2020.grand-challenge.org/). In particular, we show how to use U-Net with 3 steps to achieve IoU 0.8093 on testing set, which is very close to the top 1 score (0.8254, 550+ participants) on the [leaderboard](https://tn-scui2020.grand-challenge.org/evaluation/leaderboard/).
 
 
 ## Task and Dataset
@@ -73,7 +73,7 @@ Create following folders
     │       └── tnscui2020_testset # directly decompressing tnscui2020_testset.rar
 ```
 
-nnU-Net is designed for 3D images with `nifti` format, while the data format in thyroid nodule task is the 2D image with `png` format. We can expand all the 2D images with an additional dimension and convert them to `nifti` format with this [code](). Now, the files in `MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D` are
+nnU-Net is designed for 3D images with `nifti` format, while the data format in thyroid nodule task is the 2D image with `png` format. We can expand all the 2D images with an additional dimension and convert them to `nifti` format with this [code](https://github.com/JunMa11/TNSCUI2020/blob/master/utils/Step1_preparing_data.py). Now, the files in `MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D` are
 
 ```python
     MICCAI2020/
@@ -136,11 +136,11 @@ The five trained models will be automatically saved in `MICCAI2020/Models/nnUNet
     │                       ├── model_final_checkpoint.model.pkl
     │                   └── plans.pkl # 
 
-Trained models will be publicly available in [Github](https://github.com/JunMa11/TNSCUI2020) when the challenge submission is closed (31/7/2020).
+
 
 ## Step 3. Inferring testing set and Submission
 
-Run
+Inferring testing set by five-model ensemble
 
 ```python
 nnUNet_predict -i path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/imagesTs -o path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/UNet_Submission_NII/ -t Task600_Thyroid2D -m 2d
@@ -164,8 +164,11 @@ Then, we convert the `nifti` files to `PNG` format.
 ```python
 import nibabel as nib
 from skimage import io
-seg_path = 'path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/UNet_Submission_NII/'
-save_path = 'path to MICCAI2020/OriData/TNSCUI2020/UNet_Submission_PNG/'
+import os
+join = os.path.join
+
+seg_path = 'path to MICCAI2020/nnUNetData/nnUNet_raw_data/Task600_Thyroid2D/TestSet_NII_Results_NaiveUNet_Task600/'
+save_path = 'path to MICCAI2020/OriData/TNSCUI2020/TestSet_PNG_Results_NaiveUNet_Task600/'
 
 for i in range(1, 911):
     seg = nib.load(join(seg_path, 'test_'+str(i)+'.nii')).get_fdata()
@@ -175,12 +178,9 @@ for i in range(1, 911):
 
 **The most exciting moment comes!**
 
-Zip the folder `UNet_submission` and submit it to the [official portal](https://tn-scui2020.grand-challenge.org/evaluation/submissions/create/).
+Zip the folder `TestSet_PNG_Results_NaiveUNet_Task600` and submit it to the [official portal](https://tn-scui2020.grand-challenge.org/evaluation/submissions/create/).
 
 The results obtain IoU 0.8093, which is very close to the Top 1 IoU 0.8254 on the [leaderboard](https://tn-scui2020.grand-challenge.org/evaluation/leaderboard/).
-
-
-
 
 
 
@@ -213,7 +213,7 @@ This strategy obtains remarkable improvements during five-fold cross validation.
 |  3   |   0.8701    |     0.9147     |    0.8771    |
 |  4   |   0.8719    |     0.9105     |    0.8735    |
 
-> Trained models have been publicly available at [here]().
+> Trained models are publicly available at [here]().
 
 ## Future
 
@@ -224,9 +224,6 @@ In the future segmentation challenges, we hope the trained baseline models can b
 
 ## Acknowledgment
 
-We appreciate TN-SCUI 2020 organizers for the great challenge. We also thank all authors of nnU-Net for the out-of-the-box method.
-
-
-
+We highly appreciate TN-SCUI 2020 organizers for the great challenge, and all authors of nnU-Net for the out-of-the-box method.
 
 
