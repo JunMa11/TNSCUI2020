@@ -95,13 +95,20 @@ nnU-Net is designed for 3D images with `nifti` format, while the data format in 
     │           └── dataset.json # download from https://github.com/JunMa11/TNSCUI2020/blob/master/Task600_Thyroid2D/dataset.json
 ```
 
+Open terminal and run
+`nnUNet_plan_and_preprocess -t 600 --verify_dataset_integrity`
+
 Data ready! 
 
 Next, we can train 2D U-Net models.
 
 ## Step 2. Training five-fold cross validation models
 
-We train five models for cross validation. Open terminal and run
+- Network hyperparameters
+
+![Network hyperparameters](https://github.com/JunMa11/TNSCUI2020/blob/master/Img/NetworkHyperparameters.PNG)
+
+- Train five models for cross validation. Open terminal and run
 
 ```python
 nnUNet_train 2d nnUNetTrainerV2 Task600_Thyroid2D 0
