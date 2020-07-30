@@ -1,6 +1,7 @@
 # 3 Steps Are All You Need to Achieve SOTA in MICCAI 2020 Thyroid Nodule Segmentation Challenge
 
-Segmentation is the most popular tasks in MICCAI 2020 challenges, including 15 out of 24 challenges. In this tutorial, we focus on the segmentation task in  [thyroid nodule segmentation and classification challenge (TN-SCUI 2020)](https://tn-scui2020.grand-challenge.org/). In particular, we show how to use U-Net with 3 steps to achieve IoU 0.8093 on the official leaderboard, which is very close to the Top 1 score (0.8173, 500+ participants).
+Segmentation is the most popular tasks in MICCAI 2020 challenges, including 15 out of 24 challenges. In this tutorial, we focus on the segmentation task in  [thyroid nodule segmentation and classification challenge (TN-SCUI 2020)](https://tn-scui2020.grand-challenge.org/). In particular, we show how to use U-Net with 3 steps to achieve IoU 0.8093 on the official leaderboard, which is very close to the Top 1 score (0.8254, 550+ participants) on the [leaderboard](https://tn-scui2020.grand-challenge.org/evaluation/leaderboard/).
+
 
 ## Task and Dataset
 
@@ -176,5 +177,47 @@ for i in range(1, 911):
 
 Zip the folder `UNet_submission` and submit it to the [official portal](https://tn-scui2020.grand-challenge.org/evaluation/submissions/create/).
 
-The results obtain IoU 0.8093, which is very close to the Top 1 IoU 0.8173.
+The results obtain IoU 0.8093, which is very close to the Top 1 IoU 0.8254 on the [leaderboard](https://tn-scui2020.grand-challenge.org/evaluation/leaderboard/).
+
+
+
+
+
+
+## Two unsuccessful attempts
+
+### Cascaded pipeline
+
+Two U-Nets are employed.
+- Step 1. Train U-Net to segment thyroid nodules from original ultrasound images.
+- Step 2. Crop the nodule region of interest (ROI).
+- Step 3. Train the new U-Net based on ROI images.
+
+This strategy obtains remarkable improvements during five-fold cross validation. However, the performance gains **do not** generalize to testing set.
+
+### Pesudo label learning
+
+- Step 1. Generate pseudo test set labels: using the baseline U-Net to segment the testing set.
+- Step 2. Train a new U-Net based on test set images and the pseudo labels.
+- Step 3. Finetune the trained U-Net on training set.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
