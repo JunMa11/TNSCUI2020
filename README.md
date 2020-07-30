@@ -203,19 +203,28 @@ This strategy obtains remarkable improvements during five-fold cross validation.
 
 
 
+## Five-fold cross validation results (Dice)
+
+| Fold | Naive U-Net | Cascaded U-Net | Pseudo label |
+| :--: | :---------: | :------------: | :----------: |
+|  0   |   0.8747    |     0.9132     |    0.8770    |
+|  1   |   0.8873    |     0.9147     |    0.8882    |
+|  2   |   0.8808    |     0.9123     |    0.8799    |
+|  3   |   0.8701    |     0.9147     |    0.8771    |
+|  4   |   0.8719    |     0.9105     |    0.8735    |
+
+> Trained models have been publicly available at [here]().
+
+## Future
+
+When beginning with a medical image segmentation challenge, many participants would take U-Net as their first try. Currently, such trained baseline models are not widely shared between participants due to privacy considerations. This might be a great waste of time and energy.
+
+In the future segmentation challenges, we hope the trained baseline models can be freely shared by the organizers and participants at the beginning of the challenge, which could reduce repeatedly training the same models.
 
 
+## Acknowledgment
 
-
-
-
-
-
-
-
-
-
-
+We appreciate TN-SCUI 2020 organizers for the great challenge. We also thank all authors of nnU-Net for the out-of-the-box method.
 
 
 
