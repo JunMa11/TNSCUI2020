@@ -23,7 +23,7 @@ for name in os.listdir(train_img_path):
     img_3d = np.expand_dims(img_png, -1).repeat(3, -1)
     img_nii = nib.Nifti1Image(img_3d.astype(np.uint8), np.eye(4))
     # ground truth: png to nifti
-    gt_png = io.imread(join(train_gt_path, name))
+    gt_png = io.imread(join(train_gt_path, name))>0 # label value should be 1
     gt_3d = np.expand_dims(gt_png, -1).repeat(3, -1)
     gt_nii = nib.Nifti1Image(gt_3d.astype(np.uint8), np.eye(4))
     # save results
