@@ -220,7 +220,7 @@ This strategy obtains remarkable improvements during five-fold cross validation.
 |  3   |   0.8701    |     0.9147     |    0.8771    |
 |  4   |   0.8719    |     0.9105     |    0.8735    |
 
-> Trained models are publicly available at [here]().
+> Trained models are publicly available at [here](http://doi.org/10.5281/zenodo.3965648).
 
 ## Future
 
